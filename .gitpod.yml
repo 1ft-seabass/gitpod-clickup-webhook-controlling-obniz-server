@@ -1,0 +1,7 @@
+tasks:
+  - init: npm i
+    command: node app.js
+ports:
+  - port: 3000
+    onOpen: open-browser
+    visibility: public
