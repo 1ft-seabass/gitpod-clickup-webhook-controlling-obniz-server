@@ -24,13 +24,13 @@ app.use(express.urlencoded({ extended: true }));
 app.post('/clickup/webhook', async function(req, res) {
   console.log('/clickup/webhook');
 
+  // タスクのタイトル
+  const taskTitle = req.body.payload.name;
   console.log('タスクのタイトル');
-  console.log(req.body.payload.name);
-  console.log('Discord メッセージ内容');
-  console.log(req.body.payload.text_content);
+  console.log(taskTitle);
 
   // ClickUp の Webhook データからタスク詳細のテキストをメッセージとして抽出
-  const messageObnizDisplay = req.body.payload.text_content;
+  const messageObnizDisplay = "[ClickUp Task]\n" + taskTitle + "\nCompleted!";
 
   // obniz のディスプレイにメッセージ反映
   obniz.display.clear();
